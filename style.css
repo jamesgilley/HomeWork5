@@ -22,5 +22,26 @@
     border: 0;
     height: 50px;
     padding: 10px;
-    
+}
+
+.schedule-block .task input:focus {
+    border: none;
+} 
+
+.schedule-block .save {
+    background: #003bde;
+    color: white;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.clear-button {
+    border: none;
+    color: white;
+    background: #003bde;
+    border-radius: 4px;
+    padding: 10px 30px;
 }
