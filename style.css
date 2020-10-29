@@ -1,0 +1,26 @@
+.schedule-block {
+    width: 70%;
+    margin: 0 auto;
+    border-radius: 5px;
+    padding: 10px;
+    height: 60px;
+    border-bottom: 1px solid #000;
+}
+
+.schedule-block .time {
+    background: white;
+    border-right: 1px solid #000;
+    height: 50px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.schedule-block .task input {
+    background: #c3c3c3;
+    width: 100%;
+    border: 0;
+    height: 50px;
+    padding: 10px;
+    
+}
