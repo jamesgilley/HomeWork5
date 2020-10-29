@@ -43,3 +43,24 @@ let data = [
     schedule: "",
   },
 ];
+
+$('.clear-button').on('click', function(){
+    localStorage.removeItem('data')
+    window.location.reload()
+})
+
+function initializeApp(){
+    if(localStorage.getItem("data")){
+        let store = JSON.parse(localStorage.getItem('data'))
+        data = store
+    }
+}
+
+initializeApp();
+
+const saveInput = (i) => {
+    data[i].schedule = $(`.task_${i}`).val()
+    console.log(data)
+    localStorage.setItem('data', JSON.stringify(data))
+    alert('Data saved')
+}
