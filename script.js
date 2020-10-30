@@ -44,23 +44,58 @@ let data = [
   },
 ];
 
-$('.clear-button').on('click', function(){
-    localStorage.removeItem('data')
-    window.location.reload()
-})
+$(".clear-button").on("click", function () {
+  localStorage.removeItem("data");
+  window.location.reload();
+});
 
-function initializeApp(){
-    if(localStorage.getItem("data")){
-        let store = JSON.parse(localStorage.getItem('data'))
-        data = store
-    }
+function initializeApp() {
+  if (localStorage.getItem("data")) {
+    let store = JSON.parse(localStorage.getItem("data"));
+    data = store;
+  }
 }
 
 initializeApp();
 
 const saveInput = (i) => {
-    data[i].schedule = $(`.task_${i}`).val()
-    console.log(data)
-    localStorage.setItem('data', JSON.stringify(data))
-    alert('Data saved')
-}
+  data[i].schedule = $(`.task_${i}`).val();
+  console.log(data);
+  localStorage.setItem("data", JSON.stringify(data));
+  alert("Data saved");
+};
+
+let blocks = data.map((block, i) => {
+  return `<div class="schedule-block">
+        <div class="row">
+            <div class="col-md-2 m-0 p-0">
+                <div class="time text-right">
+                    <p>${block.time}</p>
+                </div>
+            </div>
+            <div class="col-md-8 m-0 p-0">
+                <div class="task">
+                
+                    <input style="background: ${
+                      block.time.replace(":00", "") === moment().format("hha")
+                        ? "grey"
+                        : moment(block.time.replace(":00", ""), "hhA").isBefore(
+                            moment()
+                          )
+                        ? "red"
+                        : "green"
+                    };" class="task_${i}" value="${block.schedule}" />
+                </div>
+            </div>
+            <div class="col-md-2 m-0 p-0">
+                <div class="save" onclick="saveInput(${i})">
+                    <i class="far fa-save" ></i>
+                </div>
+            </div>
+        </div>
+    </div>`;
+});
+
+let html = blocks.join(" ")
+
+$('.schedule-container').html(html)
